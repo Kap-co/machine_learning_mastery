@@ -91,6 +91,19 @@ kfold = KFold(n_splits=10, random_state=7)
 model = LinearRegression()
 scoring = "neg_mean_absolute_error"
 results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)
-print("MAE: {:.3f} {:.3f}").format(results.mean(), results.std())
+print("MAE: {:.3f} ({:.3f})".format(results.mean(), results.std()))
 
-# Mean squared error - 
+# Mean squared error - the absolute version of MAE, it gives the result of square root of the mean suqared error. 
+num_folds = 10
+kfold = KFold(n_splits=10, random_state=7)
+model = LinearRegression()
+scoring = 'neg_mean_squared_error'
+results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)
+print("MSE: {:.3f} ({:.3f})".format(results.mean(), results.std()))
+
+# R square Metric - provides an indication of the goodness of ift of a set of predictions to the actual values, 0 being no-fit 1 being the perfect fit.
+kfold = KFold(n_splits=10, random_state=7)
+model = LinearRegression()
+scoring= 'r2'
+results = cross_val_score(model,X,Y,cv=kfold, scoring=scoring)
+print("R^2: {:.3f} ({:.3f})".format(results.mean(), results.std()))
